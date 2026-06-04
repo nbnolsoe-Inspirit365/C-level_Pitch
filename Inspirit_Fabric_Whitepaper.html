@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hvorfor dine data ikke skaber værdi – endnu · Inspirit</title>
+  <style>
+/* =============================================
+   INSPIRIT DESIGN SYSTEM — komplet CSS
+   Brug denne fil uændret i alle HTML-outputs.
+   ============================================= */
+
+:root{
+  --navy-deep:#05141D;
+  --navy:#0F2735;
+  --navy-soft:#16334A;
+  --cyan:#00BFFF;
+  --cyan-tint:#A3E5FF;
+  --lilla:#AB9AFF;
+  --lilla-tint:#EADEFD;
+  --green:#00D36C;
+  --green-tint:#A1E7C6;
+  --white:#FFFFFF;
+  --warm-grey:#EFEFEF;
+  --line:rgba(255,255,255,.1);
+  --line-strong:rgba(255,255,255,.18);
+  --gradient:linear-gradient(90deg,#00BFFF 0%,#AB9AFF 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{
+  background:var(--navy);color:var(--white);
+  font-family:"Bierstadt","Aptos","Segoe UI",Arial,sans-serif;
+  font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;padding:96px 72px;
+  background:radial-gradient(120% 100% at 0% 0%,#16334A 0%,#0F2735 55%,#05141D 100%);
+  overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;left:72px;right:72px;bottom:64px;height:2px;
+  background:var(--gradient);
+}
+
+/* ── EYEBROW ── */
+.eyebrow{
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cyan-tint);font-weight:500;
+  display:inline-flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:32px;height:2px;background:var(--gradient);display:inline-block;}
+
+/* ── HEADINGS ── */
+.hero h1{
+  font-size:64px;font-weight:500;letter-spacing:-.025em;
+  margin-top:24px;max-width:1020px;line-height:1.05;
+}
+.hero h1 .grad,blockquote .grad{
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{margin-top:24px;max-width:780px;color:rgba(255,255,255,.78);font-size:18px;}
+.hero .meta{
+  margin-top:48px;display:flex;gap:32px;flex-wrap:wrap;
+  color:rgba(255,255,255,.55);font-size:13px;text-transform:uppercase;
+  letter-spacing:.08em;font-weight:500;
+}
+
+/* ── SECTIONS ── */
+section{padding:96px 72px;}
+section.alt{background:var(--navy-deep);}
+h2{font-size:40px;font-weight:500;letter-spacing:-.02em;line-height:1.1;max-width:920px;}
+h3{font-size:24px;font-weight:500;letter-spacing:-.015em;margin-bottom:16px;}
+p{color:rgba(255,255,255,.8);}
+.section-intro{max-width:780px;margin-top:24px;font-size:17px;color:rgba(255,255,255,.78);}
+
+/* ── FRAMEWORK ROW (3 kolonner med stage-nummer) ── */
+.framework-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
+.fw{
+  border:1px solid var(--line);border-radius:10px;padding:32px;
+  background:rgba(255,255,255,.02);position:relative;overflow:hidden;
+}
+.fw::before{content:"";position:absolute;top:0;left:0;width:60px;height:2px;background:var(--gradient);}
+.fw .stage{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:500;}
+.fw .stage-num{
+  font-size:48px;font-weight:500;letter-spacing:-.025em;line-height:1;margin-top:8px;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.fw h3{margin-top:16px;font-size:22px;}
+.fw .up-line{
+  font-size:13px;color:rgba(255,255,255,.55);font-style:italic;margin-top:8px;
+  border-left:2px solid rgba(255,255,255,.15);padding-left:12px;
+}
+.fw p.body{font-size:15px;margin-top:20px;}
+.fw .inspirit-tag{
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-tint);font-weight:500;
+}
+
+/* ── BRIDGE BLOCKS (citat → pil → svar) ── */
+.bridge{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:stretch;margin-top:48px;}
+.bridge + .bridge{margin-top:24px;}
+.quote-from-up{
+  border:1px solid var(--line);border-radius:10px;padding:28px;background:rgba(255,255,255,.02);
+}
+.quote-from-up .src{
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:500;
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.quote-from-up .src::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--warm-grey);opacity:.5;}
+.quote-from-up blockquote{font-size:16px;font-style:italic;color:rgba(255,255,255,.85);line-height:1.5;}
+.bridge-arrow{
+  align-self:center;width:48px;height:48px;border-radius:50%;
+  background:rgba(0,191,255,.08);border:1px solid rgba(0,191,255,.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.bridge-arrow svg{width:20px;height:20px;}
+.inspirit-answer{
+  border-radius:10px;padding:28px;
+  background:linear-gradient(180deg,rgba(0,191,255,.08) 0%,rgba(171,154,255,.04) 100%);
+  border:1px solid rgba(0,191,255,.25);position:relative;overflow:hidden;
+}
+.inspirit-answer::before{content:"";position:absolute;top:0;left:0;width:80px;height:2px;background:var(--gradient);}
+.inspirit-answer .src{
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:500;
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.inspirit-answer .src::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gradient);}
+.inspirit-answer p{font-size:15px;color:rgba(255,255,255,.9);}
+
+/* ── PULL QUOTE ── */
+.quote-wrap{
+  margin:96px 72px;padding:64px;
+  background:radial-gradient(120% 100% at 100% 0%,#16334A 0%,#0F2735 60%,#05141D 100%);
+  border-radius:10px;position:relative;overflow:hidden;
+}
+.quote-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient);}
+.quote-wrap blockquote{font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1.25;max-width:920px;}
+.quote-wrap .attr{
+  margin-top:32px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-tint);font-weight:500;
+}
+
+/* ── TWO-COLUMN COMPARISON ── */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:64px;}
+.col{border:1px solid var(--line);border-radius:10px;padding:32px;background:rgba(255,255,255,.02);}
+.col .label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:500;}
+.col h3{margin-top:8px;}
+.col ul{list-style:none;padding:0;margin-top:20px;}
+.col li{
+  padding:12px 0;border-bottom:1px solid var(--line);
+  display:flex;gap:12px;align-items:flex-start;font-size:15px;color:rgba(255,255,255,.85);
+}
+.col li:last-child{border-bottom:none;}
+.col li::before{
+  content:"";flex-shrink:0;width:8px;height:8px;border-radius:2px;
+  background:var(--gradient);margin-top:7px;
+}
+.col .footnote{
+  margin-top:20px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:14px;color:rgba(255,255,255,.65);font-style:italic;
+}
+
+/* ── PILLARS (3 kolonner med ikon) ── */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
+.pillar{
+  border:1px solid var(--line);border-radius:10px;padding:32px;
+  background:linear-gradient(180deg,rgba(0,191,255,.04) 0%,rgba(171,154,255,.02) 100%);
+  position:relative;
+}
+.pillar .pillar-icon{
+  width:64px;height:64px;border-radius:10px;
+  background:rgba(0,191,255,.08);border:1px solid rgba(0,191,255,.25);
+  display:flex;align-items:center;justify-content:center;margin-bottom:24px;
+}
+.pillar .pillar-icon svg{width:32px;height:32px;}
+.pillar h3{font-size:20px;margin-bottom:12px;}
+.pillar p{font-size:15px;}
+
+/* ── SPØRGSMÅLSGRID (nummererede kort) ── */
+.questions{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.q{border:1px solid var(--line);border-radius:10px;padding:32px;background:rgba(255,255,255,.02);}
+.q .q-num{
+  font-size:48px;font-weight:500;letter-spacing:-.025em;line-height:1;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:16px;
+}
+.q h4{font-size:18px;font-weight:500;margin-bottom:8px;}
+.q p{font-size:14px;color:rgba(255,255,255,.7);}
+
+/* ── CTA SEKTION ── */
+.cta{padding:96px 72px;background:var(--navy-deep);border-top:1px solid var(--line);}
+.cta h2{margin-bottom:24px;}
+.cta p{font-size:17px;max-width:720px;margin-bottom:48px;}
+
+/* ── SIGNATURKORT ── */
+.signature{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;}
+.person{border:1px solid var(--line);border-radius:10px;padding:24px;background:rgba(255,255,255,.02);}
+.person .role{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-tint);font-weight:500;}
+.person .name{font-size:18px;font-weight:500;margin-top:8px;}
+.person .loc{font-size:13px;color:rgba(255,255,255,.55);margin-top:4px;}
+
+/* ── FOOTER ── */
+footer{
+  padding:32px 72px;background:var(--navy-deep);border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:500;
+}
+footer .brand{font-size:18px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--white);}
+
+/* ── STAT STRIP ── */
+.stat-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:10px;
+  overflow:hidden;margin-top:64px;
+}
+.stat{
+  background:rgba(255,255,255,.02);padding:40px 32px;text-align:center;
+}
+.stat .num{
+  font-size:52px;font-weight:500;letter-spacing:-.025em;line-height:1;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat .lbl{font-size:14px;color:rgba(255,255,255,.65);margin-top:12px;line-height:1.4;}
+
+/* ── CASE BOX ── */
+.case-box{
+  margin-top:48px;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(0,191,255,.25);
+}
+.case-box .case-header{
+  background:linear-gradient(90deg,rgba(0,191,255,.12) 0%,rgba(171,154,255,.08) 100%);
+  padding:20px 32px;display:flex;align-items:center;gap:16px;
+  border-bottom:1px solid rgba(0,191,255,.2);
+}
+.case-box .case-tag{
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cyan);font-weight:500;
+}
+.case-box .case-title{font-size:17px;font-weight:500;}
+.case-box .case-body{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line);
+}
+.case-box .case-item{
+  background:var(--navy);padding:28px 32px;
+}
+.case-box .case-num{
+  font-size:36px;font-weight:500;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1;
+}
+.case-box .case-desc{font-size:14px;color:rgba(255,255,255,.7);margin-top:8px;line-height:1.4;}
+
+/* ── RESPONSIVT ── */
+@media(max-width:1100px){
+  .framework-row,.pillars,.questions,.signature{grid-template-columns:1fr 1fr;}
+  .twocol{grid-template-columns:1fr;}
+  .bridge{grid-template-columns:1fr;gap:16px;}
+  .bridge-arrow{transform:rotate(90deg);margin:0 auto;}
+  .hero h1{font-size:48px;}
+  section,.hero{padding:64px 32px;}
+  .quote-wrap{margin:64px 32px;padding:40px;}
+  .quote-wrap blockquote{font-size:24px;}
+  .stat-strip{grid-template-columns:1fr 1fr;}
+  .case-box .case-body{grid-template-columns:1fr;}
+}
+@media(max-width:680px){
+  .framework-row,.pillars,.questions,.signature{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  h2{font-size:28px;}
+  footer{padding:24px 32px;}
+  .stat-strip{grid-template-columns:1fr;}
+}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO — FORSIDE
+════════════════════════════════════════════ -->
+<header class="hero">
+  <span class="eyebrow">Microsoft Fabric · Guide til ledelsen</span>
+  <h1>Hvorfor dine data<br>ikke skaber værdi<br><span class="grad">– endnu</span></h1>
+  <p class="lead">Sådan samler Microsoft Fabric og Dynamics 365 virksomhedens data i én beslutningsplatform — og giver CFO'er, salgsledere og direktioner det beslutningsgrundlag, de egentlig har brug for.</p>
+  <div class="meta">
+    <span>Til: CFO · Salgschef · Direktion</span>
+    <span>Fra: Inspirit</span>
+    <span>2026</span>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════
+     SEKTION 1 — VIRKELIGHEDEN
+════════════════════════════════════════════ -->
+<section class="alt">
+  <span class="eyebrow">Side 2 · Virkeligheden</span>
+  <h2 style="margin-top:24px;">Der er ikke mangel på data.<br>Der er mangel på tillid til dem.</h2>
+  <p class="section-intro">De fleste virksomheder har investeret i Dynamics 365, CRM-systemer, Excel-modeller og databaser. Alligevel sidder ledelsen med de samme frustrationer uge efter uge.</p>
+
+  <div class="bridge">
+    <div class="quote-from-up">
+      <div class="src">Udfordring · Økonomi</div>
+      <blockquote>"Månedsrapporten kræver manuelle udtræk fra tre systemer — og er forældet, inden den er færdig."</blockquote>
+    </div>
+    <div class="bridge-arrow">
+      <svg viewBox="0 0 20 20" fill="none" stroke="#00BFFF" stroke-width="1.5">
+        <path d="M4 10h12M12 6l4 4-4 4"/>
+      </svg>
+    </div>
+    <div class="inspirit-answer">
+      <div class="src">Konsekvens</div>
+      <p>Rapportering tager for lang tid. Beslutninger baseres på data, der er uger gamle — ikke dagens virkelighed.</p>
+    </div>
+  </div>
+
+  <div class="bridge">
+    <div class="quote-from-up">
+      <div class="src">Udfordring · Salg vs. Økonomi</div>
+      <blockquote>"Salg, økonomi og drift arbejder ud fra hvert sit datasæt. Mødetid bruges på at diskutere tallene — ikke forretningen."</blockquote>
+    </div>
+    <div class="bridge-arrow">
+      <svg viewBox="0 0 20 20" fill="none" stroke="#00BFFF" stroke-width="1.5">
+        <path d="M4 10h12M12 6l4 4-4 4"/>
+      </svg>
+    </div>
+    <div class="inspirit-answer">
+      <div class="src">Konsekvens</div>
+      <p>Tallene stemmer ikke. Der er ingen fælles sandhed om KPI'er og definitioner, og tilliden til data eroderer.</p>
+    </div>
+  </div>
+
+  <div class="bridge">
+    <div class="quote-from-up">
+      <div class="src">Udfordring · Organisation</div>
+      <blockquote>"Viden er samlet hos to-tre analytikere. Resten venter — eller laver deres egne udtræk i Excel."</blockquote>
+    </div>
+    <div class="bridge-arrow">
+      <svg viewBox="0 0 20 20" fill="none" stroke="#00BFFF" stroke-width="1.5">
+        <path d="M4 10h12M12 6l4 4-4 4"/>
+      </svg>
+    </div>
+    <div class="inspirit-answer">
+      <div class="src">Konsekvens</div>
+      <p>Nøglepersoner bliver flaskehalse. Forretningen reagerer for sent — data viser fortiden frem for nutiden.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PULL QUOTE
+════════════════════════════════════════════ -->
+<div class="quote-wrap">
+  <blockquote>
+    Problemet er sjældent manglende data.<br>
+    Det er <span class="grad">manglende tillid til dem</span> — og manglende evne til at handle på dem i tide.
+  </blockquote>
+  <div class="attr">Inspirit · Erfaring fra dataprojekter på tværs af brancher</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SEKTION 2 — FRA SYSTEMER TIL PLATFORM
+════════════════════════════════════════════ -->
+<section>
+  <span class="eyebrow">Side 3 · Løsningen</span>
+  <h2 style="margin-top:24px;">Fra systemer til beslutningsplatform.</h2>
+  <p class="section-intro">Microsoft Fabric bygger bro mellem virksomhedens data og de beslutninger, der skal træffes. Data fra Dynamics 365 og øvrige systemer samles ét sted — og bliver til indsigt, der kan handles på.</p>
+
+  <div class="framework-row">
+    <div class="fw">
+      <span class="stage">Trin 01 · Input</span>
+      <div class="stage-num">Data</div>
+      <h3>Ét sted for alle data</h3>
+      <p class="up-line">"Dynamics 365 kobles til øvrige forretningssystemer automatisk."</p>
+      <p class="body">Økonomi, salg, produktion og logistik samles i én fælles dataplattform. Ingen manuelle udtræk, ingen silooer.</p>
+      <div class="inspirit-tag">Fabric · OneLake · Dynamics 365</div>
+    </div>
+    <div class="fw">
+      <span class="stage">Trin 02 · Behandling</span>
+      <div class="stage-num">Indsigt</div>
+      <h3>Én version af sandheden</h3>
+      <p class="up-line">"Alle arbejder med de samme KPI'er og definitioner."</p>
+      <p class="body">Ikke én version i salg og en anden i økonomi. Fælles definitioner, fælles dashboards, fælles tillid.</p>
+      <div class="inspirit-tag">Power BI · Semantic modeller</div>
+    </div>
+    <div class="fw">
+      <span class="stage">Trin 03 · Output</span>
+      <div class="stage-num">Handling</div>
+      <h3>Indsigt, når den er relevant</h3>
+      <p class="up-line">"Beslutninger træffes på aktuelle data — ikke forrige måneds rapport."</p>
+      <p class="body">Automatiseret rapportering frigør tid. Ledelsen handler på dagens tal, ikke på historiske oversigter.</p>
+      <div class="inspirit-tag">Realtid · Automatisering · AI</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SEKTION 3 — HVAD BETYDER DET I PRAKSIS
+════════════════════════════════════════════ -->
+<section class="alt">
+  <span class="eyebrow">Side 4 · I praksis</span>
+  <h2 style="margin-top:24px;">Hvad betyder det for din rolle?</h2>
+  <p class="section-intro">Fabric er ikke et IT-projekt. Det er et forretningsprojekt. Her er, hvad det konkret giver tre centrale roller i virksomheden.</p>
+
+  <div class="questions">
+    <div class="q">
+      <div class="q-num">CFO</div>
+      <h4>Økonomi & Controlling</h4>
+      <p>Automatiske svar på: Hvordan udvikler dækningsgraden sig? Hvilke kunder er mest profitable? Hvor afviger vi fra budget? — uden manuelle udtræk, leveret direkte i dashboards.</p>
+    </div>
+    <div class="q">
+      <div class="q-num">Salg</div>
+      <h4>Salgschef & Commercial</h4>
+      <p>Data fra Dynamics 365 Sales kombineres med økonomi- og aktivitetsdata. Hvor skaber vi vækst? Hvor mister vi omsætning? Hvilke kunder kræver opmærksomhed? Svaret er altid opdateret.</p>
+    </div>
+    <div class="q">
+      <div class="q-num">CEO</div>
+      <h4>Direktion & Bestyrelse</h4>
+      <p>Strategiske KPI'er, forecasts og tværgående analyser i ét ledelsesbillede. Realtidsindsigt giver stærkere beslutningsgrundlag og hurtigere reaktionsevne — også op til bestyrelsesniveau.</p>
+    </div>
+  </div>
+
+  <!-- Statistik strip -->
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="num">Op til 80%</div>
+      <div class="lbl">mindre manuelt rapporteringsarbejde</div>
+    </div>
+    <div class="stat">
+      <div class="num">Daglig</div>
+      <div class="lbl">KPI-opdateringer — ikke månedlig</div>
+    </div>
+    <div class="stat">
+      <div class="num">Samlet</div>
+      <div class="lbl">ledelsesdashboard for hele virksomheden</div>
+    </div>
+    <div class="stat">
+      <div class="num">Tillid</div>
+      <div class="lbl">til tallene og klar til AI</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SEKTION 4 — HVORFOR INSPIRIT
+════════════════════════════════════════════ -->
+<section>
+  <span class="eyebrow">Side 5 · Inspirit</span>
+  <h2 style="margin-top:24px;">Teknologi skaber ikke værdi alene.</h2>
+  <p class="section-intro">Den største udfordring er sjældent at implementere en platform — det er at sikre, at data understøtter virksomhedens konkrete mål og beslutninger. Det er præcis dér, Inspirit gør forskellen.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="url(#grad-pillar)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="grad-pillar" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00BFFF"/>
+              <stop offset="100%" stop-color="#AB9AFF"/>
+            </linearGradient>
+          </defs>
+          <rect x="4" y="8" width="24" height="16" rx="2"/>
+          <path d="M4 13h24M10 18h12M10 21h8"/>
+        </svg>
+      </div>
+      <h3>Moderne dataplatform</h3>
+      <p>Vi etablerer fundamentet for sikker og skalerbar dataanalyse — bygget til at vokse med virksomheden og integrere med eksisterende systemer.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="url(#grad-pillar)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="16" r="12"/>
+          <path d="M10 16l4 4 8-8"/>
+        </svg>
+      </div>
+      <h3>Fælles KPI'er</h3>
+      <p>Vi sikrer, at hele organisationen arbejder ud fra samme datagrundlag og definitioner. Slut med parallelle sandheder og uproduktive datadiskussioner.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="url(#grad-pillar)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 4L8 18h7l-1 10 10-14h-7z"/>
+        </svg>
+      </div>
+      <h3>Automatiseret rapportering</h3>
+      <p>Vi frigør tid til analyse frem for databehandling. Rapporter opdateres automatisk — dag og nat — uden manuelle udtræk.</p>
+    </div>
+  </div>
+
+  <div class="twocol" style="margin-top:48px;">
+    <div class="col">
+      <span class="label">Microsoft Fabric</span>
+      <h3>Platformen der samler det hele</h3>
+      <ul>
+        <li>Data fra alle systemer samlet ét sted</li>
+        <li>Automatiseret dataflow fra Dynamics 365</li>
+        <li>Power BI dashboards bygget på fælles definitioner</li>
+        <li>AI-analyse og forecast direkte i platformen</li>
+        <li>Skalerbar arkitektur — vokser med virksomheden</li>
+      </ul>
+      <p class="footnote">Microsoft Fabric er platformen. Inspirit er partneren, der sætter den i spil for jeres forretning.</p>
+    </div>
+    <div class="col">
+      <span class="label">Inspirit</span>
+      <h3>Partneren der skaber forretningsværdi</h3>
+      <ul>
+        <li>160+ specialister i Skandinavien</li>
+        <li>Nordens stærkeste fagmiljø på Dynamics 365 Finance</li>
+        <li>Dyb erfaring med Fabric, Power BI og dataplattforme</li>
+        <li>Forstår forretningen — ikke kun teknologien</li>
+        <li>Top 5 Great Place to Work i Norge tre år i træk</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CTA
+════════════════════════════════════════════ -->
+<section class="cta">
+  <span class="eyebrow">Næste skridt</span>
+  <h2 style="margin-top:24px;">Er I klar til at se, hvad jeres data egentlig kan?</h2>
+  <p>De fleste virksomheder har allerede dataene. Potentialet ligger i at samle dem, forstå dem og bruge dem aktivt i forretningen. Vi tilbyder en uforpligtende snak om, hvad der er muligt for netop jeres virksomhed.</p>
+  <div class="signature">
+    <div class="person">
+      <div class="role">Kontakt · Norge</div>
+      <div class="name">inspirit.no</div>
+      <div class="loc">Oslo · Bergen · Stavanger</div>
+    </div>
+    <div class="person">
+      <div class="role">Kontakt · Danmark</div>
+      <div class="name">inspirit.dk</div>
+      <div class="loc">København</div>
+    </div>
+    <div class="person">
+      <div class="role">Specialisering</div>
+      <div class="name">Microsoft Fabric</div>
+      <div class="loc">Data Platform · Power BI · D365</div>
+    </div>
+    <div class="person">
+      <div class="role">Teamstørrelse</div>
+      <div class="name">160+ specialister</div>
+      <div class="loc">Skandinavien</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <span class="brand">Inspirit</span>
+  <span>Skandinaviens ledende specialister på Microsofts forretningsløsninger</span>
+  <span>inspirit.no · inspirit.dk</span>
+</footer>
+
+</body>
+</html>

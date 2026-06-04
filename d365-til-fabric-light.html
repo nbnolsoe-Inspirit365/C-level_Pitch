@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Microsoft Fabric &amp; D365 · Light Whitepaper</title>
+<style>
+/* =============================================
+   INSPIRIT DESIGN SYSTEM — komplet CSS
+   ============================================= */
+:root{
+  --navy-deep:#05141D;
+  --navy:#0F2735;
+  --navy-soft:#16334A;
+  --cyan:#00BFFF;
+  --cyan-tint:#A3E5FF;
+  --lilla:#AB9AFF;
+  --lilla-tint:#EADEFD;
+  --green:#00D36C;
+  --green-tint:#A1E7C6;
+  --white:#FFFFFF;
+  --warm-grey:#EFEFEF;
+  --line:rgba(255,255,255,.1);
+  --line-strong:rgba(255,255,255,.18);
+  --gradient:linear-gradient(90deg,#00BFFF 0%,#AB9AFF 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:64px;}
+html,body{
+  background:var(--navy);color:var(--white);
+  font-family:"Bierstadt","Aptos","Segoe UI",Arial,sans-serif;
+  font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;padding:96px 72px;
+  background:radial-gradient(120% 100% at 0% 0%,#16334A 0%,#0F2735 55%,#05141D 100%);
+  overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;left:72px;right:72px;bottom:64px;height:2px;
+  background:var(--gradient);
+}
+
+/* ── EYEBROW ── */
+.eyebrow{
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cyan-tint);font-weight:500;
+  display:inline-flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:32px;height:2px;background:var(--gradient);display:inline-block;}
+
+/* ── HEADINGS ── */
+.hero h1{
+  font-size:64px;font-weight:500;letter-spacing:-.025em;
+  margin-top:24px;max-width:1020px;line-height:1.05;
+}
+.hero h1 .grad,blockquote .grad{
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{margin-top:24px;max-width:780px;color:rgba(255,255,255,.78);font-size:18px;}
+.hero .meta{
+  margin-top:48px;display:flex;gap:32px;flex-wrap:wrap;
+  color:rgba(255,255,255,.55);font-size:13px;text-transform:uppercase;
+  letter-spacing:.08em;font-weight:500;
+}
+
+/* ── SECTIONS ── */
+section{padding:96px 72px;}
+section.alt{background:var(--navy-deep);}
+h2{font-size:40px;font-weight:500;letter-spacing:-.02em;line-height:1.1;max-width:920px;}
+h3{font-size:24px;font-weight:500;letter-spacing:-.015em;margin-bottom:16px;}
+p{color:rgba(255,255,255,.8);}
+.section-intro{max-width:780px;margin-top:24px;font-size:17px;color:rgba(255,255,255,.78);}
+
+/* ── FRAMEWORK ROW ── */
+.framework-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
+.fw{
+  border:1px solid var(--line);border-radius:10px;padding:32px;
+  background:rgba(255,255,255,.02);position:relative;overflow:hidden;
+}
+.fw::before{content:"";position:absolute;top:0;left:0;width:60px;height:2px;background:var(--gradient);}
+.fw .stage{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:500;}
+.fw .stage-num{
+  font-size:48px;font-weight:500;letter-spacing:-.025em;line-height:1;margin-top:8px;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.fw h3{margin-top:16px;font-size:22px;}
+.fw .up-line{
+  font-size:13px;color:rgba(255,255,255,.55);font-style:italic;margin-top:8px;
+  border-left:2px solid rgba(255,255,255,.15);padding-left:12px;
+}
+.fw p.body{font-size:15px;margin-top:20px;}
+.fw .inspirit-tag{
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-tint);font-weight:500;
+}
+
+/* ── PULL QUOTE ── */
+.quote-wrap{
+  margin:96px 72px;padding:64px;
+  background:radial-gradient(120% 100% at 100% 0%,#16334A 0%,#0F2735 60%,#05141D 100%);
+  border-radius:10px;position:relative;overflow:hidden;
+}
+.quote-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient);}
+.quote-wrap blockquote{font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1.25;max-width:920px;}
+.quote-wrap .attr{
+  margin-top:32px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-tint);font-weight:500;
+}
+
+/* ── SPØRGSMÅLSGRID ── */
+.questions{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.q{border:1px solid var(--line);border-radius:10px;padding:32px;background:rgba(255,255,255,.02);}
+.q .q-num{
+  font-size:48px;font-weight:500;letter-spacing:-.025em;line-height:1;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:16px;
+}
+.q h4{font-size:18px;font-weight:500;margin-bottom:8px;}
+.q p{font-size:14px;color:rgba(255,255,255,.7);}
+
+/* ── FOOTER ── */
+footer{
+  padding:32px 72px;background:var(--navy-deep);border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:500;
+}
+footer .brand{font-size:18px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--white);}
+
+/* ── PAGE NAV ── */
+.page-nav{
+  background:var(--navy-deep);border-bottom:1px solid var(--line);
+  padding:14px 48px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+  position:sticky;top:0;z-index:100;
+}
+.page-nav a{
+  color:rgba(255,255,255,.55);text-decoration:none;font-size:11px;
+  letter-spacing:.05em;text-transform:uppercase;font-weight:500;
+  padding:6px 10px;border-radius:4px;border:1px solid transparent;
+  white-space:nowrap;transition:color .2s,border-color .2s,background .2s;
+}
+.page-nav a:hover{color:var(--cyan);border-color:rgba(0,191,255,.3);}
+.page-nav a.active{color:var(--cyan);border-color:rgba(0,191,255,.4);background:rgba(0,191,255,.06);}
+.page-nav .nav-home{color:var(--cyan-tint);border-color:rgba(163,229,255,.2);}
+.page-nav a.locked{
+  color:rgba(255,255,255,.28);cursor:not-allowed;
+  position:relative;padding-right:22px;
+}
+.page-nav a.locked::after{
+  content:"🔒";position:absolute;right:6px;top:50%;
+  transform:translateY(-50%);font-size:9px;opacity:.6;
+}
+.page-nav a.locked:hover{color:rgba(255,255,255,.28);border-color:transparent;background:transparent;}
+
+/* ── INDEX GRID ── */
+.index-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
+.index-card{
+  border:1px solid var(--line);border-radius:10px;padding:28px 28px 24px;
+  background:rgba(255,255,255,.02);text-decoration:none;color:inherit;
+  display:block;position:relative;overflow:hidden;transition:border-color .25s,background .25s;
+}
+.index-card:hover{border-color:rgba(0,191,255,.35);background:rgba(0,191,255,.04);}
+.index-card::before{content:"";position:absolute;top:0;left:0;width:48px;height:2px;background:var(--gradient);}
+.index-card .num{
+  font-size:36px;font-weight:500;letter-spacing:-.02em;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;
+}
+.index-card h3{font-size:18px;font-weight:500;margin:12px 0 10px;}
+.index-card p{font-size:13px;color:rgba(255,255,255,.6);}
+.index-card .tag{margin-top:16px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan-tint);font-weight:500;}
+
+/* Tilgængeligt-kort */
+.index-card.available::after{
+  content:"✓ Inkluderet i light";
+  position:absolute;top:14px;right:14px;
+  font-size:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:500;
+  color:var(--green);
+  background:rgba(0,211,108,.1);border:1px solid rgba(0,211,108,.25);
+  padding:3px 8px;border-radius:4px;
+}
+.index-card.available{border-color:rgba(0,211,108,.25);}
+
+/* Låst-kort */
+.index-card.locked{
+  opacity:.5;cursor:not-allowed;
+  filter:grayscale(.4);
+}
+.index-card.locked::before{background:rgba(255,255,255,.2);}
+.index-card.locked .num{
+  background:none;-webkit-background-clip:initial;color:rgba(255,255,255,.35);
+}
+.index-card.locked::after{
+  content:"🔒 Full version";
+  position:absolute;top:14px;right:14px;
+  font-size:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:500;
+  color:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.05);border:1px solid var(--line);
+  padding:3px 8px;border-radius:4px;
+}
+.index-card.locked:hover{border-color:var(--line);background:rgba(255,255,255,.02);}
+
+/* ── UPSELL BANNER ── */
+.upsell{
+  margin:48px 72px;padding:40px 48px;
+  background:linear-gradient(120deg,rgba(0,191,255,.08) 0%,rgba(171,154,255,.08) 100%);
+  border:1px solid rgba(0,191,255,.25);border-radius:10px;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.upsell::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient);}
+.upsell h3{font-size:22px;margin-bottom:8px;}
+.upsell p{font-size:15px;color:rgba(255,255,255,.78);max-width:640px;}
+.upsell .badge-pill{
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--cyan-tint);font-weight:500;
+  padding:6px 14px;border-radius:999px;border:1px solid rgba(163,229,255,.3);
+  background:rgba(163,229,255,.05);white-space:nowrap;
+}
+
+/* ── CHAPTER DIVIDER ── */
+.chapter-divider{
+  height:4px;background:var(--gradient);opacity:.5;
+  margin:0;border:none;
+}
+
+/* ── RESPONSIVT ── */
+@media(max-width:1100px){
+  .framework-row,.questions,.index-grid{grid-template-columns:repeat(2,1fr);}
+  .hero h1{font-size:48px;}
+  section,.hero{padding:64px 32px;}
+  .quote-wrap{margin:64px 32px;padding:40px;}
+  .quote-wrap blockquote{font-size:24px;}
+  .upsell{margin:32px;padding:32px;grid-template-columns:1fr;}
+}
+@media(max-width:680px){
+  .framework-row,.questions,.index-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  h2{font-size:28px;}
+  footer{padding:24px 32px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="page-nav">
+  <a href="#oversigt" class="nav-home">◆ Oversigt</a>
+  <a href="#kapitel-1">1. Executive Summary</a>
+  <a href="#" class="locked" title="Kun i fuld version">2. Hvad er Fabric?</a>
+  <a href="#" class="locked" title="Kun i fuld version">3. D365 &amp; Fabric</a>
+  <a href="#" class="locked" title="Kun i fuld version">4. Direct Lake</a>
+  <a href="#" class="locked" title="Kun i fuld version">5. Arkitektur</a>
+  <a href="#" class="locked" title="Kun i fuld version">6. Kom i gang</a>
+  <a href="#" class="locked" title="Kun i fuld version">7. Governance</a>
+  <a href="#" class="locked" title="Kun i fuld version">8. Licenser</a>
+  <a href="#" class="locked" title="Kun i fuld version">9. Legacy</a>
+  <a href="#" class="locked" title="Kun i fuld version">10. Næste skridt</a>
+  <a href="#" class="locked" title="Kun i fuld version">11. Konklusion</a>
+</nav>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="grad-pillar" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#00BFFF"/><stop offset="100%" stop-color="#AB9AFF"/>
+  </linearGradient>
+</defs></svg>
+
+<!-- ============================================= -->
+<!-- FORSIDE / OVERSIGT                             -->
+<!-- ============================================= -->
+<article id="oversigt">
+<header class="hero">
+  <span class="eyebrow">Microsoft Fabric &amp; Dynamics 365 · Whitepaper Light</span>
+  <h1>Microsoft Fabric –<br><span class="grad">komplet guide til D365-kunder</span>.</h1>
+  <p class="lead">En kort introduktion til moderne dataplatform og analytics. Baseret udelukkende på offentlig Microsoft Learn-dokumentation – produktstatus pr. juni 2026.</p>
+  <div class="meta">
+    <span>Udgivet af Inspirit</span>
+    <span>Light-version · 1 af 11 kapitler</span>
+    <span>Juni 2026</span>
+  </div>
+</header>
+
+<section>
+  <span class="eyebrow">Indholdsfortegnelse</span>
+  <h2 style="margin-top:24px;">Light-versionen indeholder ét kapitel.</h2>
+  <p class="section-intro">Du læser nu light-versionen med Executive Summary. Den fulde version dækker alle 11 kapitler – fra OneLake-fundamentet til en konkret 5-trins implementeringsguide og migration fra legacy. Kontakt Inspirit for at få adgang til den fulde version.</p>
+
+  <div class="index-grid">
+    <a class="index-card available" href="#kapitel-1">
+      <div class="num">01</div><h3>Executive Summary</h3>
+      <p>Nøglebudskab til beslutningstager-niveauet. Tre strategiske fordele og handlingspunkter.</p>
+      <div class="tag">CTO · CFO · IT-chef</div>
+    </a>
+    <div class="index-card locked">
+      <div class="num">02</div><h3>Hvad er Microsoft Fabric?</h3>
+      <p>OneLake, alle Fabric-arbejdsbelastninger i overblik og medallion-arkitektur forklaret.</p>
+      <div class="tag">Platform · OneLake · Medallion</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">03</div><h3>D365 &amp; Fabric: Integration</h3>
+      <p>De to anbefalede mønstre: Link to Fabric og Synapse Link. Fast Fabric og Business Central.</p>
+      <div class="tag">Link to Fabric · Synapse Link</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">04</div><h3>Direct Lake</h3>
+      <p>Sammenligning af de to varianter, licenskrav og optimal D365-kontekst.</p>
+      <div class="tag">VertiPaq · Zero-copy · F-SKU</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">05</div><h3>Anbefalet arkitektur</h3>
+      <p>Visuelt arkitekturdiagram, medallion-model og valg af Lakehouse vs. Warehouse.</p>
+      <div class="tag">Medallion · Lakehouse · Warehouse</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">06</div><h3>Kom i gang: Trin-for-trin</h3>
+      <p>5 konkrete trin fra Power Apps-konfiguration til medallion-pipeline. 2–4 timers PoC.</p>
+      <div class="tag">Power Apps · PoC · Pipeline</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">07</div><h3>Governance, sikkerhed og compliance</h3>
+      <p>Purview-integration, OLS/RLS-modellen og OneLake Diagnostics forklaret.</p>
+      <div class="tag">Purview · OLS · RLS</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">08</div><h3>Licenser og kapacitetsstrategi</h3>
+      <p>F-SKU oversigt med anbefalinger, autoscale og migration fra P-SKU.</p>
+      <div class="tag">F8 · F16 · Capacity Metrics</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">09</div><h3>Overgang fra legacy</h3>
+      <p>Hvad er udfaset, og hvilke FastTrack Tools Microsoft stiller gratis til rådighed.</p>
+      <div class="tag">BYOD · DES · FastTrack</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">10</div><h3>Næste skridt og læringsveje</h3>
+      <p>3-faset implementeringsplan og komplet oversigt over Microsoft Learn-ressourcer.</p>
+      <div class="tag">3 faser · Microsoft Learn</div>
+    </div>
+    <div class="index-card locked">
+      <div class="num">11</div><h3>Konklusion</h3>
+      <p>Opsummering af de fire fundamentale skift og opfordring til at komme i gang.</p>
+      <div class="tag">PoC · Roadmap · Inspirit</div>
+    </div>
+  </div>
+</section>
+
+<div class="upsell">
+  <div>
+    <h3>Vil du have den fulde guide?</h3>
+    <p>De øvrige 10 kapitler indeholder arkitekturdiagrammer, trin-for-trin implementeringsguide, F-SKU-anbefalinger, FastTrack-migrationsværktøjer og hele Microsoft Learn-ressourcelisten. Kontakt Inspirit for at få den komplette version.</p>
+  </div>
+  <span class="badge-pill">Kontakt Inspirit</span>
+</div>
+
+<div class="quote-wrap">
+  <blockquote>
+    Start med et proof-of-concept: Forbind ét D365-miljø til Fabric, byg én Direct Lake-model og ét Power BI-dashboard. Derfra er vejen til en <span class="grad">fuldt skaleret analytisk dataplatform</span> kortere end de fleste forventer.
+  </blockquote>
+  <div class="attr">Microsoft Fabric &amp; D365 Whitepaper · Inspirit · Juni 2026</div>
+</div>
+</article>
+
+<hr class="chapter-divider">
+
+<!-- ============================================= -->
+<!-- KAPITEL 1 · EXECUTIVE SUMMARY                  -->
+<!-- ============================================= -->
+<article id="kapitel-1">
+<header class="hero">
+  <span class="eyebrow">Kapitel 1 · Microsoft Fabric &amp; Dynamics 365</span>
+  <h1>Klar til <span class="grad">næste generation</span><br>af dataplatform.</h1>
+  <p class="lead">Microsoft Fabric samler ERP-data, analytik og Business Intelligence under ét tag. For D365-kunder er barrieren for enterprise-grade analytics lavere end nogensinde.</p>
+  <div class="meta">
+    <span>Målgruppe: CTO · CFO · IT-chef · BI-leder</span>
+    <span>Udgivet af Inspirit</span>
+    <span>Juni 2026</span>
+  </div>
+</header>
+
+<section>
+  <span class="eyebrow">Nøglebudskab</span>
+  <h2 style="margin-top:24px;">Hvad beslutningstagers skal vide.</h2>
+  <p class="section-intro">Dynamics 365-kunder behøver ikke længere bygge komplekse ETL-pipelines blot for at analysere ERP-data. Med Link to Fabric og Azure Synapse Link er data tilgængeligt i OneLake med minimal opsætning – uden at kopiere data ud af Dataverse-sikkerhedsgrænsen.</p>
+
+  <div class="framework-row">
+    <div class="fw">
+      <span class="stage">Fordel 01 · Enkelhed</span>
+      <div class="stage-num">Zero</div>
+      <h3>Ingen ETL-pipelines at bygge</h3>
+      <p class="up-line">"Link to Fabric opretter automatisk OneLake-shortcuts til D365-data."</p>
+      <p class="body">Fra Power Apps Maker Portal kan du aktivere Link to Fabric på få minutter og få direkte adgang til D365 F&amp;O- og Dataverse-tabeller i Fabric – uden storage-konto, uden pipeline-kode.</p>
+      <div class="inspirit-tag">Link to Fabric · Zero-copy</div>
+    </div>
+    <div class="fw">
+      <span class="stage">Fordel 02 · Hastighed</span>
+      <div class="stage-num">Fast</div>
+      <h3>Import-hastighed uden periodisk refresh</h3>
+      <p class="up-line">"Direct Lake kombinerer VertiPaq-hastighed med realtidsdata fra OneLake."</p>
+      <p class="body">Power BI-rapporter via Direct Lake forespørger Delta-tabeller direkte i OneLake og returnerer resultater med fuld VertiPaq-motor-hastighed – uden at data skal importeres og opdateres periodisk.</p>
+      <div class="inspirit-tag">Direct Lake · VertiPaq</div>
+    </div>
+    <div class="fw">
+      <span class="stage">Fordel 03 · Governance</span>
+      <div class="stage-num">One</div>
+      <h3>Én samlet governancemodel</h3>
+      <p class="up-line">"OneLake er organisationens ene, logiske data lake – med fælles sikkerhed."</p>
+      <p class="body">Alle Fabric-arbejdsbelastninger opererer på samme data i OneLake. Microsoft Purview giver lineage-tracking fra D365 over OneLake til Power BI-rapporter. OLS og RLS styrer adgang på model-niveau.</p>
+      <div class="inspirit-tag">OneLake · Purview · OLS/RLS</div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-wrap">
+  <blockquote>
+    For D365-kunder er det kritisk at komme i gang nu – de ældre eksportmetoder udfases, og Fabric-platformen danner fundamentet for Microsofts <span class="grad">AI-vision med Copilot</span>.
+  </blockquote>
+  <div class="attr">Microsoft Fabric &amp; D365 Whitepaper · Juni 2026</div>
+</div>
+
+<section class="alt">
+  <span class="eyebrow">Strategiske handlingspunkter</span>
+  <h2 style="margin-top:24px;">Tre beslutninger at træffe nu.</h2>
+  <p class="section-intro">Start med et proof-of-concept: Forbind ét D365-miljø til Fabric, byg én Direct Lake-model og ét Power BI-dashboard. Derfra er vejen til en fuldt skaleret analytisk dataplatform kortere end de fleste forventer.</p>
+
+  <div class="questions">
+    <div class="q">
+      <div class="q-num">01</div>
+      <h4>Kom i gang med Link to Fabric</h4>
+      <p>Aktivér Link to Fabric på et non-produktions D365-miljø. Estimeret tid: 2–4 timer for en administrator med de rette rettigheder.</p>
+    </div>
+    <div class="q">
+      <div class="q-num">02</div>
+      <h4>Planlæg migration fra legacy</h4>
+      <p>BYOD, Data Export Service og Export to Data Lake er udfaset. Brug Microsofts FastTrack Transition Tools til at migrere eksisterende dataflows med minimalt besvær.</p>
+    </div>
+    <div class="q">
+      <div class="q-num">03</div>
+      <h4>Vælg den rigtige F-SKU</h4>
+      <p>Start med F8 eller F16 til proof-of-concept. Mål faktisk CU-forbrug via Fabric Capacity Metrics App de første uger, inden du skalerer.</p>
+    </div>
+  </div>
+</section>
+</article>
+
+<footer>
+  <span class="brand">Inspirit</span>
+  <span>Microsoft Fabric &amp; D365 Whitepaper · Light</span>
+  <span>Juni 2026 · learn.microsoft.com</span>
+</footer>
+
+<script>
+// Active chapter highlight
+(function(){
+  const navLinks = document.querySelectorAll('.page-nav a:not(.locked)');
+  const sections = Array.from(navLinks).map(a => {
+    const id = a.getAttribute('href').slice(1);
+    return { link: a, el: document.getElementById(id) };
+  }).filter(s => s.el);
+
+  function onScroll(){
+    const y = window.scrollY + 100;
+    let current = sections[0];
+    for (const s of sections){
+      if (s.el.offsetTop <= y) current = s;
+    }
+    navLinks.forEach(a => a.classList.remove('active'));
+    if (current) current.link.classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Block clicks on locked links
+  document.querySelectorAll('.page-nav a.locked, .index-card.locked').forEach(el => {
+    el.addEventListener('click', e => e.preventDefault());
+  });
+})();
+</script>
+
+</body>
+</html>
